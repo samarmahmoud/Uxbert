@@ -1,28 +1,32 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
-  StatusBar,
-} from 'react-native';
-import Router from './src/Navigation/index';
+  StatusBar
+} from "react-native";
+import ReduxThunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import reducer from "./src/Reducer";
+import Router from "./src/Navigation/index";
 
 class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <Provider store={createStore(reducer, {}, applyMiddleware(ReduxThunk))}>
         <StatusBar backgroundColor="#5c2e8e" barStyle="light-content" />
         <Router />
-      </View>
+      </Provider>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1
+  container: {
+    flex: 1
   }
 });
 

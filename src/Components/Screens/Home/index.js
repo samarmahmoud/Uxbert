@@ -13,6 +13,7 @@ class Home extends Component {
   }
  handleSave= async()=>{
  await  AsyncStorage.setItem('InputData',this.state.userInput)
+  this.props.navigation.navigate('UserData')
   
 }
 componentDidMount(){
@@ -23,7 +24,7 @@ componentDidMount(){
     return (
       <View style={styles.Container}>
         <Text style={styles.Headline}>
-          {`Welcome Samar ${this.state.userInput}` }
+          {"Welcome Samar " + (this.state.userInput=== null ? "" : this.state.userInput)}  
         </Text>
         <Input
           inputContainer={styles.inputContainer}
